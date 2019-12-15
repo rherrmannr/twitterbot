@@ -10,16 +10,15 @@ logger = logging.getLogger()
 
 def like_tweets(api, user):
     # count = 1, only like the last one..
-    tweets = api.user_timeline(screen_name=user, count=1, include_rts=True, tweet_mode='extended')
-    tweet = tweets[0]
-
-    logger.info(f"Processing tweet id {tweet.id}:{os.linesep}{tweet.full_text}")
     try:
+        tweets = api.user_timeline(screen_name=user, count=1, include_rts=True, tweet_mode='extended')
+        tweet = tweets[0]
+
+        logger.info(f"Processing tweet id {tweet.id}:{os.linesep}{tweet.full_text}")
         tweet.favorite()
-        logger.info(f"Liked tweet id {tweet.id}")
-    except TweepError:
-        logger.info(f"Already liked tweet id {tweet.id}")
-    return tweet
+
+    except TweepError as e:
+        logger.warning(e)
 
 
 if __name__ == '__main__':

@@ -7,9 +7,4 @@ def create_api(logger):
     auth.set_access_token(twitter_credentials.ACCESS_TOKEN, twitter_credentials.ACCESS_TOKEN_SECRET)
 
     api = tweepy.API(auth, wait_on_rate_limit=True, wait_on_rate_limit_notify=True)
-    try:
-        api.verify_credentials()
-    except Exception as e:
-        logger.error('Can not create credentials')
-        raise e
     return api
