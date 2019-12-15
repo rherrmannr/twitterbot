@@ -1,0 +1,7 @@
+FROM python:3.6
+COPY main.py /main.py
+COPY tweepy_config.py /tweepy_config.py
+COPY tweepy_liker.py /tweepy_liker.py
+COPY twitter_credentials.py /twitter_credentials.py
+RUN pip install tweepy
+CMD ["python3", "/main.py"]
