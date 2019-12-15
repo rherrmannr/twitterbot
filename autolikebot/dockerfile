@@ -1,0 +1,6 @@
+FROM python:3.6
+COPY tweepy_auto_like_bot.py /tweepy_auto_like_bot.py
+COPY tweepy_config.py /tweepy_config.py
+COPY twitter_credentials.py /twitter_credentials.py
+RUN pip install tweepy
+CMD ["python3", "/tweepy_auto_like_bot.py"]
